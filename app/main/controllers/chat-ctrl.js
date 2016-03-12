@@ -46,7 +46,7 @@ angular.module('main')
   $scope.sendMessage = function () {
     $scope.chatLoading = true;
 
-    if ($scope.data.message.substr(1, 5) === 'giphy') {
+    if ($scope.data.message.length > 8 && $scope.data.message.substr(1, 5) === 'giphy') {
       $http({
         method: 'GET',
         url: 'http://api.giphy.com/v1/gifs/random?tag=' + encodeURIComponent($scope.data.message.substr(7)) + '&api_key=dc6zaTOxFJmzC'
@@ -118,9 +118,10 @@ angular.module('main')
   channel.bind('msg', function (message) {
     $log.debug('LISTEN', message);
 
-    if (message.origin !== origin) {
+    if (message.text !== $scope.messages[$scope.messages.length-1].text) {
       $scope.messages.push(message);
     }
+
 
     if (message.origin === 'server') {
       $scope.agentResponseIsLoading = false;
