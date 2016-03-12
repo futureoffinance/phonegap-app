@@ -1,9 +1,9 @@
-<ion-view view-title="Chat">
+<ion-view>
 
   <ion-content class="content-stable">
     <div ng-repeat="message in messages track by message.id"
          ng-class="{other: message.origin === 'client'}"
-         class="messages">
+         class="messages animated bounceIn">
       <div class="message">
         <span>{{ message.text }}</span>
       </div>

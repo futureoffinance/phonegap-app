@@ -1,17 +1,17 @@
-<ion-view id="home">
+<ion-view id="home" hide-nav-bar="true">
   <ion-content class="content-stable" has-bouncing="false">
 
     <!-- Header -->
     <div class="jumbotron row">
 
-      <div class="col-60">
+      <div class="col-50">
         <p>Your account</p>
-        <h1>&euro;1865</h1>
+        <h1>&euro;<span ng-bind="balance"></span></h1>
       </div>
 
-      <div class="col-40">
+      <div class="col-50 gray">
         <p>Today</p>
-        <h1>&euro;22</h1>
+        <h1>&euro;<span ng-bind="expensesToday"></span></h1>
       </div>
 
     </div>
@@ -30,8 +30,10 @@
       </ion-item>
     </ion-list>
 
+    <hr />
+
     <!-- Content (yesterday) -->
-    <h4 class="padded">Yesterday</h4>
+    <h4>Yesterday</h4>
     <ion-list>
       <ion-item ng-repeat="row in (transactions|filter:{group:'yesterday'}) track by row.id" class="row">
         <div class="col-80">

@@ -46,4 +46,18 @@ angular.module('main')
     icon: 'ion-hammer'
   }];
 
+  $scope.expensesToday = 0;
+  $scope.balance = 1290;
+
+  $scope.$watch('transactions', function (oldValue, newValue) {
+    var expenses = 0;
+
+    angular.forEach(newValue, function (row) {
+      if (row.group === 'today') {
+        expenses += row.amount;
+      }
+    });
+
+    $scope.expensesToday = parseInt(expenses, 10);
+  })
 });
