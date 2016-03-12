@@ -68,7 +68,6 @@ angular.module('main')
   };
 
   $scope.agentResponseIsLoading = false;
-  $scope.hideTime = true;
   $scope.data = {};
   $scope.messages = [];
 
