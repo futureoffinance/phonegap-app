@@ -10,14 +10,20 @@ angular.module('main')
     isIOS = ionic.Platform.isWebView() && ionic.Platform.isIOS(),
     origin = $stateParams.origin || 'client';
 
-  $scope.sendMessage = function () {
-    $scope.chatLoading = true;
+  var postMessage = function (message) {
+    message = message || $scope.data.message;
+
+    $scope.messages.push({
+      origin: origin,
+      text: message,
+      id: new Date().getUTCMilliseconds(),
+    });
 
     $http({
       method: 'POST',
       url: 'https://futureoffinance.herokuapp.com/chat',
       data: {
-        text: $scope.data.message,
+        text: message,
         origin: $scope.data.origin
       }
     }).then(function (response) {
@@ -35,7 +41,23 @@ angular.module('main')
     }).finally(function () {
       $scope.chatLoading = false;
     });
+  };
 
+  $scope.sendMessage = function () {
+    $scope.chatLoading = true;
+
+    if ($scope.data.message.substr(1, 5) === 'giphy') {
+      $http({
+        method: 'GET',
+        url: 'http://api.giphy.com/v1/gifs/random?tag=' + encodeURIComponent($scope.data.message.substr(7)) + '&api_key=dc6zaTOxFJmzC'
+      }).then(function (response) {
+        postMessage('<img src="' + response.data.data.image_url + '" class="img-responsive" />');
+      });
+
+      return;
+    }
+
+    postMessage();
     $ionicScrollDelegate.scrollBottom(true);
   };
 
@@ -95,7 +117,10 @@ angular.module('main')
   var channel = pusher.subscribe('fofchat');
   channel.bind('msg', function (message) {
     $log.debug('LISTEN', message);
-    $scope.messages.push(message);
+
+    if ($scope.messages[$scope.messages.length - 1].origin !== origin) {
+      $scope.messages.push(message);
+    }
 
     if (message.origin === 'server') {
       $scope.agentResponseIsLoading = false;
