@@ -40,10 +40,10 @@ angular.module('main')
     if (isIOS) {
       $scope.data.keyboardHeight = 50;
     }
+
     $timeout(function () {
-      $ionicScrollDelegate.scrollTop(true);
+      $ionicScrollDelegate.scrollBottom(true);
       $ionicScrollDelegate.resize();
-      cordova.plugins.Keyboard.disableScroll(true);
     }, 300);
   };
 
@@ -53,7 +53,6 @@ angular.module('main')
     }
 
     $ionicScrollDelegate.resize();
-    //cordova.plugins.Keyboard.disableScroll(false);
   };
 
   $scope.closeKeyboard = function () {
