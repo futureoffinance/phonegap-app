@@ -1,7 +1,7 @@
 /*global Pusher, cordova */
 'use strict';
 angular.module('main')
-.controller('ChatCtrl', function ($scope, $log, $pusher, $http, $timeout, $stateParams, $ionicScrollDelegate, $ionicLoading) {
+.controller('ChatCtrl', function ($rootScope, $scope, $log, $pusher, $http, $timeout, $stateParams, $ionicScrollDelegate, $ionicLoading) {
   var client = new Pusher('ad5496398d2aec862326', {
       cluster: 'eu',
       encrypted: true
@@ -112,13 +112,26 @@ angular.module('main')
     $scope.hideLoading();
   });
 
+  $rootScope.newMessages = 1;
+  $scope.$watch('messages.length', function () {
+    if ($scope.messages.length <= 1) {
+      return;
+    }
+
+    if ($scope.messages[$scope.messages.length - 1].origin !== origin) {
+      $rootScope.newMessages = 1;
+    } else {
+      $rootScope.newMessages = 0;
+    }
+  });
+
 
   // Listen for changes
   var channel = pusher.subscribe('fofchat');
   channel.bind('msg', function (message) {
     $log.debug('LISTEN', message);
 
-    if (message.text !== $scope.messages[$scope.messages.length-1].text) {
+    if (message.text !== $scope.messages[$scope.messages.length - 1].text) {
       $scope.messages.push(message);
     }
 
