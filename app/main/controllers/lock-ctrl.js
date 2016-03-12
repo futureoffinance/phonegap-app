@@ -4,4 +4,10 @@ angular.module('main')
 
   $log.log('Lock Screen');
 
+  window.plugins.touchid.verifyFingerprint(
+    'Scan your fingerprint please', // this will be shown in the native scanner popup
+     function (msg) {alert('ok: ' + msg);}, // success handler: fingerprint accepted
+     function (msg) {alert('not ok: ' + JSON.stringify(msg));} // error handler with errorcode and localised reason
+  );
+
 });

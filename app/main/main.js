@@ -5,7 +5,7 @@ angular.module('main', [
   'ui.router',
 ])
 .config(function ($stateProvider, $urlRouterProvider) {
-  $urlRouterProvider.otherwise('/chat');
+  $urlRouterProvider.otherwise('/lock');
   $stateProvider
     .state('lockscreen', {
       url: '/lock',
