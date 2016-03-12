@@ -16,7 +16,7 @@ angular.module('main')
 
     $http({
       method: 'POST',
-      url: 'https://fda0efc1.ngrok.io/chat',
+      url: 'https://futureoffinance.herokuapp.com/chat',
       data: {
         text: $scope.data.message,
         origin: $scope.data.origin
@@ -83,7 +83,7 @@ angular.module('main')
   $scope.showLoading();
   $http({
     method: 'GET',
-    url: 'https://fda0efc1.ngrok.io/chat'
+    url: 'https://futureoffinance.herokuapp.com/chat'
   }).then(function (response) {
     $log.debug('GET', response);
     $scope.messages = response.data;

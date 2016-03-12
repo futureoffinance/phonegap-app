@@ -4,11 +4,14 @@
   }
 
   .jumbotron {
-    background-color: #000;
+    background: #000 url('/main/assets/images/squares.png');
     * {
       color: #fff;
       padding: 0;
       margin: 0;
+      &.gray * {
+        color: #aaa;
+      }
     }
 
     > div {
@@ -19,12 +22,22 @@
   h4 {
     padding: 0 15px;
     color: #555;
-    &.padded {
-      padding-top: 30px;
-    }
+  }
+
+  hr {
+    background: #000 url('/main/assets/images/squares.png');
+    height: 30px;
+    width: 100%;
+    margin: 0;
   }
 
   .list .row {
     padding: 15px;
   }
+
+  .list .row { -webkit-animation: bounceInLeft .4s linear; -webkit-animation-fill-mode:both; }
+  .list .row:nth-child(1){ -webkit-animation-delay: 0.3s }
+  .list .row:nth-child(2){ -webkit-animation-delay: 0.6s }
+  .list .row:nth-child(3){ -webkit-animation-delay: 0.9s }
+  .list .row:nth-child(4){ -webkit-animation-delay: 1.2s }
 }

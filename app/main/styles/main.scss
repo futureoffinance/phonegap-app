@@ -20,6 +20,22 @@ $ionicons-font-path: "../assets/fonts" !default;
 
 // Include all of Ionic
 @import "../../bower_components/ionic/scss/ionic";
+@import "../../bower_components/animate.css/animate.min.css";
 
 @import "chat";
 @import "home";
+
+.menu-left .bar-header .title {
+  color: #fff;
+}
+
+.bar {
+  background: #000 url('/main/assets/images/squares.png');
+}
+
+.bar-balanced {
+  display: none;
+}
+.bar.bar-stable.bar-footer {
+  background: #aaa;
+}
