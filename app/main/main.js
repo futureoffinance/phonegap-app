@@ -27,7 +27,7 @@ angular.module('main', [
       }
     })
     .state('main.chat', {
-      url: '/chat',
+      url: '/chat/:origin?',
       views: {
         'pageContent': {
           templateUrl: 'main/templates/chat.html',

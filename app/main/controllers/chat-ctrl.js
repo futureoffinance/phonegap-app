@@ -1,13 +1,14 @@
 /*global Pusher, cordova */
 'use strict';
 angular.module('main')
-.controller('ChatCtrl', function ($scope, $log, $pusher, $http, $timeout, $ionicScrollDelegate, $ionicLoading) {
+.controller('ChatCtrl', function ($scope, $log, $pusher, $http, $timeout, $stateParams, $ionicScrollDelegate, $ionicLoading) {
   var client = new Pusher('ad5496398d2aec862326', {
       cluster: 'eu',
       encrypted: true
     }),
     pusher = $pusher(client),
-    isIOS = ionic.Platform.isWebView() && ionic.Platform.isIOS();
+    isIOS = ionic.Platform.isWebView() && ionic.Platform.isIOS(),
+    origin = $stateParams.origin || 'client';
 
 
   $scope.sendMessage = function () {
@@ -17,18 +18,21 @@ angular.module('main')
       method: 'POST',
       url: 'https://fda0efc1.ngrok.io/chat',
       data: {
-        text: $scope.data.message
+        text: $scope.data.message,
+        origin: $scope.data.origin
       }
     }).then(function (response) {
       $log.debug('POST', response);
       delete $scope.data.message;
 
-      $timeout(function () {
-        $scope.agentResponseIsLoading = true;
+      if (origin === 'client') {
         $timeout(function () {
-          $ionicScrollDelegate.scrollBottom(true);
-        }, 300);
-      }, 1000);
+          $scope.agentResponseIsLoading = true;
+          $timeout(function () {
+            $ionicScrollDelegate.scrollBottom(true);
+          }, 300);
+        }, 1000);
+      }
     }).finally(function () {
       $scope.chatLoading = false;
     });
@@ -56,7 +60,9 @@ angular.module('main')
   };
 
   $scope.closeKeyboard = function () {
-    cordova.plugins.Keyboard.close();
+    if (window.cordova !== undefined) {
+      cordova.plugins.Keyboard.close();
+    }
   };
 
   $scope.showLoading = function () {
@@ -68,7 +74,9 @@ angular.module('main')
   };
 
   $scope.agentResponseIsLoading = false;
-  $scope.data = {};
+  $scope.data = {
+    origin: origin
+  };
   $scope.messages = [];
 
   // Get all of the messages
@@ -89,6 +97,10 @@ angular.module('main')
   channel.bind('msg', function (message) {
     $log.debug('LISTEN', message);
     $scope.messages.push(message);
+
+    if (message.origin === 'server') {
+      $scope.agentResponseIsLoading = false;
+    }
 
     $timeout(function () {
       $ionicScrollDelegate.scrollBottom(true);
