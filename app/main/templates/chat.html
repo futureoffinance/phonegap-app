@@ -2,10 +2,10 @@
 
   <ion-content class="content-stable">
     <div ng-repeat="message in messages track by message.id"
-         ng-class="{other: message.origin === 'client'}"
+         ng-class="::{other: message.origin === 'client'}"
          class="messages animated bounceIn">
       <div class="message">
-        <span>{{ message.text }}</span>
+        <span>{{:: message.text }}</span>
       </div>
     </div>
 
@@ -22,8 +22,10 @@
         <input type="text" placeholder="Type your message" ng-model="data.message" ng-focus="inputUp()" ng-blur="inputDown()" ng-disabled="chatLoading" />
       </label>
 
-      <ion-spinner ng-show="chatLoading"></ion-spinner>
-      <button class="button button-clear" type="submit" ng-hide="chatLoading" ng-disabled="!data.message">Send</button>
+      <!-- <div ng-switch="chatLoading">
+        <ion-spinner ng-switch-when="true"></ion-spinner>
+        <button class="button button-clear" type="submit" ng-switch-default ng-disabled="!data.message">Send</button>
+      </div> -->
     </form>
   </ion-footer-bar>
 </ion-view>

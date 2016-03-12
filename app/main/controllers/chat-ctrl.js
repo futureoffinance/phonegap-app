@@ -10,7 +10,6 @@ angular.module('main')
     isIOS = ionic.Platform.isWebView() && ionic.Platform.isIOS(),
     origin = $stateParams.origin || 'client';
 
-
   $scope.sendMessage = function () {
     $scope.chatLoading = true;
 
