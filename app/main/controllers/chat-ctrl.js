@@ -118,7 +118,7 @@ angular.module('main')
   channel.bind('msg', function (message) {
     $log.debug('LISTEN', message);
 
-    if ($scope.messages[$scope.messages.length - 1].origin !== origin) {
+    if (message.origin !== origin) {
       $scope.messages.push(message);
     }
 
