@@ -1,5 +1,48 @@
-<ion-view>
-  <ion-content class="content-stable">
-    Home
+<ion-view id="home">
+  <ion-content class="content-stable" scroll="false">
+
+    <!-- Header -->
+    <div class="jumbotron row">
+
+      <div class="col-60">
+        <p>Your account</p>
+        <h1>&euro;1865</h1>
+      </div>
+
+      <div class="col-40">
+        <p>Today</p>
+        <h1>&euro;22</h1>
+      </div>
+
+    </div>
+
+    <!-- Content (today) -->
+    <h4>Today</h4>
+    <ion-list>
+      <ion-item ng-repeat="row in (transactions|filter:{group:'today'}) track by row.id" class="row">
+        <div class="col-80">
+          <i ng-class="row.icon"></i>
+          <span>{{:: row.description }}</span>
+        </div>
+        <div class="col-20 text-right">
+          <span>&euro;{{:: row.amount }}</span>
+        </div>
+      </ion-item>
+    </ion-list>
+
+    <!-- Content (yesterday) -->
+    <h4 class="padded">Yesterday</h4>
+    <ion-list>
+      <ion-item ng-repeat="row in (transactions|filter:{group:'yesterday'}) track by row.id" class="row">
+        <div class="col-80">
+          <i ng-class="row.icon"></i>
+          <span>{{:: row.description }}</span>
+        </div>
+        <div class="col-20 text-right">
+          <span>&euro;{{:: row.amount }}</span>
+        </div>
+      </ion-item>
+    </ion-list>
+
   </ion-content>
 </ion-view>

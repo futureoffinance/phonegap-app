@@ -1,0 +1,30 @@
+#home {
+  .scroll {
+    padding: 0;
+  }
+
+  .jumbotron {
+    background-color: #000;
+    * {
+      color: #fff;
+      padding: 0;
+      margin: 0;
+    }
+
+    > div {
+      margin: 10px;
+    }
+  }
+
+  h4 {
+    padding: 0 15px;
+    color: #555;
+    &.padded {
+      padding-top: 30px;
+    }
+  }
+
+  .list .row {
+    padding: 15px;
+  }
+}
