@@ -22,7 +22,7 @@
   <ion-footer-bar keyboard-attach class="bar-stable item-input-inset">
     <form ng-submit="sendMessage(); closeKeyboard()">
       <label class="item-input-wrapper">
-        <input type="text" placeholder="Type your message" ng-model="data.message" on-focus="inputUp()" on-blur="inputDown()" ng-disabled="chatLoading" />
+        <input type="text" placeholder="Type your message" ng-model="data.message" ng-focus="inputUp()" ng-blur="inputDown()" ng-disabled="chatLoading" />
       </label>
 
       <ion-spinner ng-show="chatLoading"></ion-spinner>
@@ -30,3 +30,4 @@
     </form>
   </ion-footer-bar>
 </ion-view>
+

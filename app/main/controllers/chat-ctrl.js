@@ -1,4 +1,4 @@
-/*global Pusher */
+/*global Pusher, cordova */
 'use strict';
 angular.module('main')
 .controller('ChatCtrl', function ($scope, $log, $pusher, $http, $timeout, $ionicScrollDelegate, $ionicLoading) {
@@ -25,6 +25,9 @@ angular.module('main')
 
       $timeout(function () {
         $scope.agentResponseIsLoading = true;
+        $timeout(function () {
+          $ionicScrollDelegate.scrollBottom(true);
+        }, 300);
       }, 1000);
     }).finally(function () {
       $scope.chatLoading = false;
@@ -35,11 +38,12 @@ angular.module('main')
 
   $scope.inputUp = function () {
     if (isIOS) {
-      $scope.data.keyboardHeight = 216;
+      $scope.data.keyboardHeight = 50;
     }
-
     $timeout(function () {
-      $ionicScrollDelegate.scrollBottom(true);
+      $ionicScrollDelegate.scrollTop(true);
+      $ionicScrollDelegate.resize();
+      cordova.plugins.Keyboard.disableScroll(true);
     }, 300);
   };
 
@@ -49,10 +53,11 @@ angular.module('main')
     }
 
     $ionicScrollDelegate.resize();
+    //cordova.plugins.Keyboard.disableScroll(false);
   };
 
   $scope.closeKeyboard = function () {
-    // cordova.plugins.Keyboard.close();
+    cordova.plugins.Keyboard.close();
   };
 
   $scope.showLoading = function () {
@@ -86,6 +91,10 @@ angular.module('main')
   channel.bind('msg', function (message) {
     $log.debug('LISTEN', message);
     $scope.messages.push(message);
+
+    $timeout(function () {
+      $ionicScrollDelegate.scrollBottom(true);
+    }, 100);
   });
 
 });
