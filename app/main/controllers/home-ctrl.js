@@ -29,7 +29,7 @@ angular.module('main')
   }, {
     id: 5,
     group: 'yesterday',
-    amount: 1101.92,
+    amount: 111.92,
     description: 'Hardware store',
     icon: 'ion-hammer'
   }, {
@@ -41,7 +41,7 @@ angular.module('main')
   }, {
     id: 7,
     group: 'today',
-    amount: 1101.92,
+    amount: 101.92,
     description: 'Hardware store',
     icon: 'ion-hammer'
   }];
