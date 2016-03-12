@@ -11,11 +11,19 @@ angular.module('main')
     origin = $stateParams.origin || 'client';
 
   var postMessage = function (message) {
+    message = message || $scope.data.message;
+
+    $scope.messages.push({
+      origin: origin,
+      text: message,
+      id: new Date().getUTCMilliseconds(),
+    });
+
     $http({
       method: 'POST',
       url: 'https://futureoffinance.herokuapp.com/chat',
       data: {
-        text: message || $scope.data.message,
+        text: message,
         origin: $scope.data.origin
       }
     }).then(function (response) {
@@ -109,7 +117,10 @@ angular.module('main')
   var channel = pusher.subscribe('fofchat');
   channel.bind('msg', function (message) {
     $log.debug('LISTEN', message);
-    $scope.messages.push(message);
+
+    if ($scope.messages[$scope.messages.length - 1].origin !== origin) {
+      $scope.messages.push(message);
+    }
 
     if (message.origin === 'server') {
       $scope.agentResponseIsLoading = false;
