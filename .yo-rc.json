@@ -1,0 +1,24 @@
+{
+  "generator-m-ionic": {
+    "answers": {
+      "appName": "FutureOfFinance",
+      "appId": "com.kasko.futureoffinance",
+      "ionicCss": false,
+      "bowerPackages": [
+        "localforage#~1.4.0"
+      ],
+      "platforms": [
+        "ios",
+        "android"
+      ],
+      "plugins": [
+        "cordova-plugin-device",
+        "cordova-plugin-dialogs",
+        "ionic-plugin-keyboard",
+        "cordova-plugin-network-information",
+        "cordova-plugin-splashscreen"
+      ],
+      "appModule": "FutureOfFinance"
+    }
+  }
+}
