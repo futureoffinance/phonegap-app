@@ -59,5 +59,5 @@ angular.module('main')
     });
 
     $scope.expensesToday = parseInt(expenses, 10);
-  })
+  });
 });

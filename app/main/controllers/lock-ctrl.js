@@ -1,8 +1,15 @@
 'use strict';
 angular.module('main')
-.controller('LockScreenCtrl', function ($log) {
+.controller('LockScreenCtrl', function ($scope, $timeout, $location) {
+  $scope.loadingLogin = false;
 
-  $log.log('Lock Screen');
+  $scope.login = function () {
+    $scope.loadingLogin = true;
+
+    $timeout(function () {
+      $location.path('/home');
+    }, 4000);
+  };
 
   if (window.plugins && window.plugins.touchid) {
     window.plugins.touchid.verifyFingerprint(
