@@ -22,6 +22,10 @@ angular.module('main')
     }).then(function (response) {
       $log.debug('POST', response);
       delete $scope.data.message;
+
+      $timeout(function () {
+        $scope.agentResponseIsLoading = true;
+      }, 1000);
     }).finally(function () {
       $scope.chatLoading = false;
     });
@@ -59,6 +63,7 @@ angular.module('main')
     $ionicLoading.hide();
   };
 
+  $scope.agentResponseIsLoading = false;
   $scope.hideTime = true;
   $scope.data = {};
   $scope.messages = [];
