@@ -11,6 +11,11 @@ angular.module('main')
       var now = new Date().getTime();
       var _10SecondsFromNow = new Date(now + 10 * 1000);
 
+      console.log($cordovaLocalNotification, window);
+      if (Object.keys($cordovaLocalNotification).length === 0) {
+        return;
+      }
+
       $cordovaLocalNotification.schedule({
         id: 1,
         title: 'Your B-day is soon.',

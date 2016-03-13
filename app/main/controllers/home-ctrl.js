@@ -6,24 +6,24 @@ angular.module('main')
     id: 1,
     group: 'today',
     amount: 5.99,
-    description: 'Starbucks',
-    icon: 'ion-coffee'
+    description: 'Train Ticket',
+    icon: 'ion-android-train'
   }, {
     id: 2,
     group: 'today',
-    amount: 10.00,
-    description: 'Hardware store',
-    icon: 'ion-hammer'
+    amount: 14.81,
+    description: 'Train Ticket',
+    icon: 'ion-android-train'
   }, {
     id: 3,
     group: 'yesterday',
-    amount: 10.00,
-    description: 'Hardware store',
-    icon: 'ion-hammer'
+    amount: 9.01,
+    description: 'Train Ticket',
+    icon: 'ion-android-train'
   }, {
     id: 4,
     group: 'yesterday',
-    amount: 50.00,
+    amount: 50.02,
     description: 'Hardware store',
     icon: 'ion-hammer'
   }, {
