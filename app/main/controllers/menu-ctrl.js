@@ -15,7 +15,7 @@ angular.module('main')
         id: 1,
         title: 'Title here',
         text: 'Text here',
-        at: _10SecondsFromNow
+        // at: _10SecondsFromNow
       }).then(function () {
         // ...
       });
