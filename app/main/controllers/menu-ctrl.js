@@ -21,9 +21,7 @@ angular.module('main')
       });
     };
 
-    // $timeout(function () {
     $scope.scheduleDelayedNotification();
-    // }, 1000);
   });
 
 });
