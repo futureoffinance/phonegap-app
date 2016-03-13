@@ -13,8 +13,8 @@ angular.module('main')
 
       $cordovaLocalNotification.schedule({
         id: 1,
-        title: 'Bank with Benefits',
-        text: 'Your B-day is soon. Here’s a few ideas how to spend it best',
+        title: 'Your B-day is soon.',
+        text: 'Here’s a few ideas how to spend it best',
         at: _10SecondsFromNow
       }).then(function () {
         // ...
