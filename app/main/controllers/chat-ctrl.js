@@ -33,14 +33,18 @@ angular.module('main')
       if (origin === 'client') {
         $timeout(function () {
           $scope.agentResponseIsLoading = true;
-          $timeout(function () {
-            $ionicScrollDelegate.scrollBottom(true);
-          }, 300);
+          scrollBottom();
         }, 1000);
       }
     }).finally(function () {
       $scope.chatLoading = false;
     });
+  };
+
+  var scrollBottom = function () {
+    $timeout(function () {
+      $ionicScrollDelegate.scrollBottom(true);
+    }, 300);
   };
 
   $scope.sendMessage = function () {
@@ -58,7 +62,7 @@ angular.module('main')
     }
 
     postMessage();
-    $ionicScrollDelegate.scrollBottom(true);
+    scrollBottom();
   };
 
   $scope.inputUp = function () {
@@ -66,8 +70,8 @@ angular.module('main')
       $scope.data.keyboardHeight = 50;
     }
 
+    scrollBottom();
     $timeout(function () {
-      $ionicScrollDelegate.scrollBottom(true);
       $ionicScrollDelegate.resize();
     }, 300);
   };
@@ -140,9 +144,7 @@ angular.module('main')
       $scope.agentResponseIsLoading = false;
     }
 
-    $timeout(function () {
-      $ionicScrollDelegate.scrollBottom(true);
-    }, 100);
+    scrollBottom();
   });
 
 });
