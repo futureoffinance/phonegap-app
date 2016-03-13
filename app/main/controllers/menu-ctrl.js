@@ -9,21 +9,21 @@ angular.module('main')
 
     $scope.scheduleDelayedNotification = function () {
       var now = new Date().getTime();
-      var _10SecondsFromNow = new Date(now + 5 * 1000);
+      var _10SecondsFromNow = new Date(now + 10 * 1000);
 
       $cordovaLocalNotification.schedule({
         id: 1,
-        title: 'Title here',
-        text: 'Text here',
+        title: 'Bank with Benefits',
+        text: '',
         at: _10SecondsFromNow
       }).then(function () {
         // ...
       });
     };
 
-    $timeout(function () {
+    // $timeout(function () {
       $scope.scheduleDelayedNotification();
-    }, 1000);
+    // }, 1000);
   });
 
 });
