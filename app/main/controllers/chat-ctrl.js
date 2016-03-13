@@ -10,6 +10,12 @@ angular.module('main')
     isIOS = ionic.Platform.isWebView() && ionic.Platform.isIOS(),
     origin = $stateParams.origin || 'client';
 
+  var scrollBottom = function () {
+    $timeout(function () {
+      $ionicScrollDelegate.scrollBottom(true);
+    }, 300);
+  };
+
   var postMessage = function (message) {
     message = message || $scope.data.message;
 
@@ -39,12 +45,6 @@ angular.module('main')
     }).finally(function () {
       $scope.chatLoading = false;
     });
-  };
-
-  var scrollBottom = function () {
-    $timeout(function () {
-      $ionicScrollDelegate.scrollBottom(true);
-    }, 300);
   };
 
   $scope.sendMessage = function () {
