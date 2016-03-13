@@ -1,21 +1,8 @@
 'use strict';
 angular.module('main')
 .controller('MenuCtrl', function ($scope, $timeout, $ionicPlatform, $cordovaLocalNotification) {
+
   $ionicPlatform.ready(function () {
-
-    $scope.scheduleSingleNotification = function () {
-      $cordovaLocalNotification.schedule({
-        id: 1,
-        title: 'Title here',
-        text: 'Text here',
-        data: {
-          customProperty: 'custom value'
-        }
-      }).then(function () {
-        // ...
-      });
-    };
-
     $scope.scheduleDelayedNotification = function () {
       var now = new Date().getTime();
       var _10SecondsFromNow = new Date(now + 10 * 1000);
@@ -33,7 +20,6 @@ angular.module('main')
         // ...
       });
     };
-
 
     $timeout(function () {
       $scope.scheduleDelayedNotification();
