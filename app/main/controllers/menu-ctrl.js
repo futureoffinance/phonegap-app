@@ -14,7 +14,7 @@ angular.module('main')
       $cordovaLocalNotification.schedule({
         id: 1,
         title: 'Bank with Benefits',
-        text: '',
+        text: 'Your B-day is soon. Here’s a few ideas how to spend it best',
         at: _10SecondsFromNow
       }).then(function () {
         // ...
