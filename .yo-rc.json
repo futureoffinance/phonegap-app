@@ -1,7 +1,7 @@
 {
   "generator-m-ionic": {
     "answers": {
-      "appName": "FutureOfFinance",
+      "appName": "Bank with Benefits",
       "appId": "com.kasko.futureoffinance",
       "ionicCss": false,
       "bowerPackages": [
