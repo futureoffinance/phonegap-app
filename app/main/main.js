@@ -12,6 +12,11 @@ angular.module('main', [
       templateUrl: 'main/templates/lockscreen.html',
       controller: 'LockScreenCtrl'
     })
+    .state('lockscreenfallback', {
+      url: '/lockfb',
+      templateUrl: 'main/templates/lockscreenfallback.html',
+      controller: 'LockScreenFallbackCtrl'
+    })
     .state('main', {
       abstract: true,
       templateUrl: 'main/templates/menu.html',
